@@ -1,9 +1,9 @@
 gunicorn
 psycopg2-binary
 pytz==2025.2
-tzdata==2025.2
+tzdata==2025.3
 docutils
-Django==5.*
+Django==6.*
 django-extensions
 djangorestframework
 djangorestframework-simplejwt

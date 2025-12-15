@@ -15,7 +15,10 @@ export default defineConfig({
     ],
     server: {
         cors: true,
-        hmr: true
+        hmr: true,
+        watch: {
+          usePolling: true
+        }
     },
     build: {
         manifest: "manifest.json",

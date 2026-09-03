@@ -3,15 +3,15 @@ import '@/scss/main.scss';
 import lab from './lab';
 
 import Alpine from 'alpinejs'
+import mask from '@alpinejs/mask'
+
+Alpine.plugin(mask)
 
 // Utils
+import './utils/theme_toggle';
 import './utils/uppercase';
 
 // Components
-// import dropdown from './components/dropdown';
-// Alpine.data('dropdown', dropdown)
-
-// Inlines!?
 import './components/dropdown';
 
 Alpine.magic('now', () => {

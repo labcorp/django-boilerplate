@@ -34,4 +34,5 @@ _media/
 _static/build/
 _static/dist/
 _static/src/
+_static/manifest.json
 _static_collected/

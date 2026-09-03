@@ -17,6 +17,11 @@ An awesome boilerplate to kickstart your next project with Django, Vite, Alpine.
  - DjangoQL [[github]](https://github.com/ivelum/djangoql)
  - Django TinyMCE [[github]](https://github.com/jazzband/django-tinymce)
  - Django Filer [[github]](https://github.com/django-cms/django-filer)
+ - Celery [[github]](https://github.com/celery/celery)
+ - Django HTMX [[github]](https://github.com/adamchainz/django-htmx)
+ - Django Allauth [[github]](https://github.com/pennersr/django-allauth)
+
+> See `docs/development.md` for the full dev workflow (Docker, uv, nvm, Celery, front).
 
 ## Docker (development)
 0. Rename `.env.example` > `.env` and update it
@@ -26,7 +31,7 @@ An awesome boilerplate to kickstart your next project with Django, Vite, Alpine.
 4. [optional] Run `docker compose exec app python manage.py createsuperuser` to create admin user
 5. Profit...
 
-It will create 2 containers (front and back)  
+It will create the containers: front, app, celery_worker, redis and db  
 > **Tip**: Search for "awesome" is all files and change it with your new project's name.
 
 ## Docker (production)
@@ -52,14 +57,13 @@ Django App can be debugged attaching VSCode to the PTVSD server (launch.json is 
 3. Profit...
 
 **Back-end**
-1. Create virtualenv && activate
-2. Run `pip install -r requirements-dev.txt`
-3. Rename `.env.example` > `.env` and update it
-4. [optional] Make `manage.py` "runabble": `$ chmod +x manage.py`
-5. Run first-time migrations with `./manage.py migrate`
-6. [optional] Run `./manage.py createsuperuser`
-7. Run `./manage.py runserver`
-8. Profit...
+1. Run `uv sync`
+2. Rename `.env.example` > `.env` and update it (point `DATABASE_URL` to a reachable Postgres)
+3. Run first-time migrations with `uv run manage.py migrate`
+4. [optional] Run `uv run manage.py createsuperuser`
+5. Run `uv run manage.py runserver`
+6. [optional] Celery worker: `uv run celery -A conf worker -l info`
+7. Profit...
 
 ---
 

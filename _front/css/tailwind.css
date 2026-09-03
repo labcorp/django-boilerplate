@@ -1,15 +1,55 @@
 @import "tailwindcss";
 
-@plugin "daisyui";
-@plugin "daisyui/theme" {
-  name: "cupcake";
-  default: true;
-  --radius-selector: 0.3rem;
-  --radius-field: 0.3rem;
-  --radius-box: 0.3rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 2px;
-  --depth: 1;
-  --noise: 1;
+/* Scan the Django templates for class names. Without this, a build scoped only to
+   _front/ (e.g. the front-only Docker build stage) purges every utility used in
+   templates. Path is relative to this file. */
+@source "../../templates";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+  exclude: rootscrollgutter;
+};
+
+@plugin "@iconify/tailwind4" {
+  scale: 1.2;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+/* Hide native spinners on number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Defaults */
+p {
+  padding-bottom: 20px;
+  line-height: 100%;
+}
+
+h1 {
+  @apply text-3xl;
+}
+
+h2 {
+  @apply text-2xl;
+  font-weight: 500;
+}
+
+h3 {
+  @apply text-xl;
 }

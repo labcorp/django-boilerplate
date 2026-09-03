@@ -1,0 +1,16 @@
+:root {
+  --divider-color: rgba(0, 0, 0, .15);
+}
+
+[data-theme="dark"] {
+  --divider-color: rgba(255, 255, 255, .15);
+}
+
+.input, .select, .textarea {
+  box-shadow: none !important;
+  &:focus, &:focus-within, &:focus-visible {
+    outline-offset: 0 !important;
+    border-color: var(--color-accent) !important;
+    outline: 2px solid var(--color-accent) !important;
+  }
+}

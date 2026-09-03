@@ -12,6 +12,7 @@ from conf.settings.initializers.filer import *
 from conf.settings.initializers.thumbnails import *
 from conf.settings.initializers.cotton import *
 from conf.settings.initializers.storage import *
+from conf.settings.initializers.celery import *
 
 
 PROJECT_NAME = 'Awesome Project'
@@ -32,6 +33,7 @@ EXTERNAL_APPS = [
     'tinymce',
     'adminsortable2',
     'storages',
+    'django_celery_results',
 ]
 
 PROJECT_APPS = [

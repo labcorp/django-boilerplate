@@ -1,9 +1,9 @@
 # Step 1: Front
-FROM node:24.7-slim AS front
+FROM node:25-slim AS front
 
 WORKDIR /app
 COPY package.json .
-COPY package-lock.json .
+COPY package-lock.jso[n] .
 RUN npm install
 COPY _front/ _front/
 
@@ -28,12 +28,15 @@ RUN apt update && \
     python3-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip
+COPY --from=ghcr.io/astral-sh/uv:0.9.21 /uv /uvx /bin/
 
-COPY requirements.txt .
-COPY requirements-dev.txt .
+# Dev keeps the project venv at /app/.venv (preserved by the compose volume);
+# put it on PATH so python/celery/debugpy resolve to it.
+ENV UV_LINK_MODE=copy
+ENV PATH="/app/.venv/bin:$PATH"
 
-RUN pip install --no-cache-dir -r requirements-dev.txt
+COPY pyproject.toml uv.lock .
+RUN uv sync --frozen --no-install-project
 
 COPY . .
 

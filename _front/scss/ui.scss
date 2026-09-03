@@ -1,0 +1,13 @@
+hr {
+  &.menu-divider { --divider-spacing: 5px; }
+  &.content-divider { --divider-spacing: 15px; }
+
+  border-top: 1px dashed var(--divider-color);
+  padding-bottom: var(--divider-spacing);
+  margin-top: var(--divider-spacing);
+}
+
+table.table-list {
+  th { padding: 15px 10px; }
+  td { padding: 5px 10px; }
+}

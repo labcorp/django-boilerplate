@@ -25,6 +25,7 @@ EXTERNAL_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'django_extensions',
+    'django_htmx',
     'django_vite',
     'djangoql',
     'django_cotton.apps.SimpleAppConfig',
